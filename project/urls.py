@@ -17,11 +17,11 @@ Including another URLconf
 from random import random
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import path, include
 from app_datetime.views import datetime_wiew
-from app_weather.views import my_wiew
-from store.views import products_view
-from store.views import shop_view
+from app_weather.views import weather_wiew
+from store.views import products_view, shop_view
+
 
 def random_wiew(request):
     return HttpResponse(random())
@@ -29,9 +29,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('random/', random_wiew),
     path('datetime/', datetime_wiew),
-    path('weather/', my_wiew),
+    path('weather/', include('app_weather.urls')),
+    path('weather/', weather_wiew),
     path('product/', products_view),
-    path('', shop_view),
+    path('', include('store.urls')),
 
 
 ]
