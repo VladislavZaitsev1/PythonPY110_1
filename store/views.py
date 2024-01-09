@@ -61,7 +61,7 @@ def shop_view(request):
         return render(request, 'store/shop.html', context={'products': data,
                                                            'category': category_key})
 
-
+@login_required(login_url='login:login_view')
 def cart_view(request):
     if request.method == "GET":
         current_user = get_user(request).username
@@ -81,12 +81,12 @@ def cart_view(request):
 
 def cart_add_view(request, id_product):
     if request.method == "GET":
-        result = add_to_cart(request, id_product)
+        result = add_to_cart(request, id_product) # TODO Вызвать ответственную за это действие функцию
         if result:
             return JsonResponse({"answer": "Продукт успешно добавлен в корзину"},
                                 json_dumps_params={'ensure_ascii': False})
 
-        return JsonResponse({"answer": "Неудачное добавление в корзину"},
+    return JsonResponse({"answer": "Неудачное добавление в корзину"},
                             status=404,
                             json_dumps_params={'ensure_ascii': False})
 
@@ -155,6 +155,7 @@ def delivery_estimate_view(request):
             # Если в базе DATA_PRICE есть страна, но нет города, то вернуть JsonResponse со словарём, {"price": значение фиксированной стоимости доставки}
             # Если нет страны, то вернуть HttpResponseNotFound("Неверные данные")
 
+@login_required(login_url='login:login_view')
 def cart_buy_now_view(request, id_product):
     if request.method == "GET":
         result = add_to_cart(request, id_product)

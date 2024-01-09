@@ -23,7 +23,7 @@ def wishlist_view(request):
         return render(request, "wishlist/wishlist.html", context={"products": products})
 
 
-@login_required(login_url='login:login_view')
+
 def wishlist_add_json(request, id_product: str):
     """
     Добавление продукта в избранное и возвращение информации об успехе или неудаче в JSON
@@ -37,7 +37,7 @@ def wishlist_add_json(request, id_product: str):
         return JsonResponse({"answer": "Неудачное добавление в избранное"}, status=404,
                                 json_dumps_params={'ensure_ascii': False}) # TODO верните JsonResponse с ключом "answer" и значением "Неудачное добавление в избранное" и параметром status=404
 
-@login_required(login_url='login:login_view')
+
 def wishlist_del_json(request, id_product: str):
     """
     Удаление продукта из избранного и возвращение информации об успехе или неудаче в JSON
@@ -52,7 +52,7 @@ def wishlist_del_json(request, id_product: str):
                                 json_dumps_params={'ensure_ascii': False})  # TODO верните JsonResponse с ключом "answer" и значением "Неудачное удаление из избранного" и параметром status=404
 
 
-@login_required(login_url='login:login_view')
+
 def wishlist_json(request):
 
     if request.method == "GET":
@@ -64,7 +64,7 @@ def wishlist_json(request):
         return JsonResponse({'answer': 'Пользователь не авторизирован'}, status=404,
                                 json_dumps_params={'ensure_ascii': False})  # TODO верните JsonResponse с ключом "answer" и значением "Пользователь не авторизирован" и параметром status=404
 
-@login_required(login_url='login:login_view')
+
 def wishlist_remove_view(request, id_product):
     if request.method == "GET":
         result = remove_from_wishlist(request, id_product)  # TODO Вызвать функцию удаления из корзины

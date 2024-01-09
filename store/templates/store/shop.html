@@ -156,6 +156,7 @@
 		.then(function(response) {
 			// Проверяем статус ответа
 			if (!response.ok) {
+				window.location.href = '/login';
 				throw new Error('Ошибка при при добавлении в корзину');
 			}
 			return response.json();
@@ -170,6 +171,7 @@
 		.catch(function(error) {
 			// Обрабатываем ошибку
 			console.error(error);
+				showPopupMessage(productId, 'Необходима авторизация');
 		})
 		.finally(function() {
 			// Включаем ссылку обратно после получения ответа (успешного или с ошибкой)
