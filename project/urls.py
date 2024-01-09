@@ -21,6 +21,7 @@ from django.urls import path, include
 from app_datetime.views import datetime_wiew
 from app_weather.views import weather_wiew
 from store.views import products_view, shop_view
+from wishlist.views import wishlist_view
 
 
 def random_wiew(request):
@@ -33,7 +34,9 @@ urlpatterns = [
     path('weather/', weather_wiew),
     path('product/', products_view),
     path('', include('store.urls')),
-    path('login/', include('app_login.urls'))
+    path('login/', include('app_login.urls')),
+    path('', include('wishlist.urls')),
+    path('wishlist/', wishlist_view)
 
 
 ]

@@ -6,7 +6,7 @@
 
     {% endblock %}
 
-      {% block head %} <!-- Блок ссылок в head-->
+    {% block head %} <!-- Блок ссылок в head-->
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,6 +60,7 @@
 		    </div>
 		  </div>
     </div>
+
     {% endblock %}
 
     {% block nav %} <!-- Блок для навигационной панели страницы магазина-->
@@ -73,19 +74,19 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="{% url 'store:shop_view' %}" class="nav-link">Магазин</a>
-			  <li class="nav-item"><a href="wishlist.html" class="nav-link">Избранное</a>
+			  <li class="nav-item"><a href="{% url 'wishlist:wishlist_view' %}" class="nav-link">Избранное</a>
 			  <li class="nav-item"><a href="{% url 'store:cart_view' %}" class="nav-link">Корзина</a>
-			    {% if user.is_authenticated %}
+			  {% if user.is_authenticated %}
                 <li class="nav-item"><a href="{% url 'login:logout_view'%}" class="nav-link">Выйти из аккаунта</a>
                 <li class="nav-item"><a class="nav-link">Привет {{user.username}}!</a>
-                {% else %}
-              <li class="nav-item"><a href="{% url 'login:login_view'%}" class="nav-link">Войти в аккаунт</a>
-                {% endif %}
+              {% else %}
+                <li class="nav-item"><a href="{% url 'login:login_view'%}" class="nav-link">Войти в аккаунт</a>
+              {% endif %}
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
-    <!-- END nav -->
+
     {% endblock %}
 
     {% block content %} <!-- Блок для уникального содержимого страницы-->
@@ -93,7 +94,7 @@
     {% endblock %}
 
     {% block news %} <!-- Блок для новостной панели-->
-    <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
         <div class="row d-flex justify-content-center py-5">
           <div class="col-md-6">
@@ -111,10 +112,11 @@
         </div>
       </div>
     </section>
+
     {% endblock %}
 
     {% block footer %} <!-- Блок для нижней панели страницы-->
-    <footer class="ftco-footer ftco-section">
+      <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
       		<div class="mouse">
@@ -187,6 +189,7 @@
         </div>
       </div>
     </footer>
+
     {% endblock %}
 
     {% block scripts %} <!-- Блок для загрузки javascript страницы-->
